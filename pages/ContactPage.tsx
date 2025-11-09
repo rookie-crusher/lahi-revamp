@@ -15,6 +15,7 @@ const ContactPage: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,14 +24,17 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       setStatus('error');
+      setErrorMessage('Please fill out all fields to send your message.');
       setTimeout(() => setStatus(null), 5000);
       return;
     }
 
     setIsSubmitting(true);
     setStatus(null);
+    setErrorMessage('');
 
     try {
       const response = await fetch('/api/send-email', {
@@ -39,15 +43,20 @@ const ContactPage: React.FC = () => {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setStatus('error');
+        setErrorMessage(data.message || 'Failed to send message. Please try again.');
+        console.error('API Error:', data);
       }
     } catch (error) {
-      console.error(error);
+      console.error('Network error:', error);
       setStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setStatus(null), 5000);
@@ -137,7 +146,7 @@ const ContactPage: React.FC = () => {
                   <p className="text-center text-green-600 bg-green-100 p-3 rounded-lg">Message sent successfully! We'll be in touch.</p>
                 )}
                 {status === 'error' && (
-                  <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg">Please fill out all fields to send your message.</p>
+                  <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg">{errorMessage || 'An error occurred. Please try again.'}</p>
                 )}
                 <button
                   type="submit"

@@ -15,6 +15,7 @@ const CareersPage: React.FC = () => {
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Handle text input fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,12 +36,14 @@ const CareersPage: React.FC = () => {
 
     if (!formData.name || !formData.email || !formData.phone || !resumeFile) {
       setStatus('error');
+      setErrorMessage('Please fill out all required fields and upload your resume.');
       setTimeout(() => setStatus(null), 5000);
       return;
     }
 
     setIsSubmitting(true);
     setStatus(null);
+    setErrorMessage('');
 
     const formDataToSend = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
@@ -55,6 +58,8 @@ const CareersPage: React.FC = () => {
         body: formDataToSend,
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', linkedin: '', portfolio: '' });
@@ -63,10 +68,13 @@ const CareersPage: React.FC = () => {
         if (fileInput) fileInput.value = '';
       } else {
         setStatus('error');
+        setErrorMessage(data.message || 'Failed to submit application. Please try again.');
+        console.error('API Error:', data);
       }
     } catch (err) {
       console.error('Error submitting form:', err);
       setStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setStatus(null), 5000);
@@ -199,12 +207,12 @@ const CareersPage: React.FC = () => {
               {/* Status Messages */}
               {status === 'success' && (
                 <p className="text-center text-green-600 bg-green-100 p-3 rounded-lg">
-                  Application submitted successfully! We’ll be in touch soon.
+                  Application submitted successfully! We'll be in touch soon.
                 </p>
               )}
               {status === 'error' && (
                 <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg">
-                  Please fill out all required fields and upload your resume.
+                  {errorMessage || 'An error occurred. Please try again.'}
                 </p>
               )}
 

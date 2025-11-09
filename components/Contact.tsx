@@ -11,6 +11,7 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -19,14 +20,17 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('error');
+      setErrorMessage('Please fill out all fields before submitting.');
       setTimeout(() => setStatus(null), 5000);
       return;
     }
 
     setIsSubmitting(true);
     setStatus(null);
+    setErrorMessage('');
 
     try {
       const response = await fetch('/api/quotation', {
@@ -35,15 +39,20 @@ const Contact: React.FC = () => {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', service: 'Game Development', message: '' });
       } else {
         setStatus('error');
+        setErrorMessage(data.message || 'Failed to submit request. Please try again.');
+        console.error('API Error:', data);
       }
     } catch (error) {
       console.error('Quotation submission error:', error);
       setStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setStatus(null), 5000);
@@ -111,7 +120,7 @@ const Contact: React.FC = () => {
             <p className="text-center text-green-600 bg-green-100 p-3 rounded-lg">Thank you for your request! We'll get back to you soon.</p>
           )}
           {status === 'error' && (
-            <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg">Please fill out all fields before submitting.</p>
+            <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg">{errorMessage || 'An error occurred. Please try again.'}</p>
           )}
           <button 
             type="submit" 
