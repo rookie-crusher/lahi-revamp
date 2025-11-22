@@ -9,6 +9,7 @@ import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { blogPosts } from './data/blogPosts';
 
 const App: React.FC = () => {
@@ -49,6 +50,8 @@ const App: React.FC = () => {
     }
 
     switch (path) {
+      case '/':
+        return <HomePage />;
       case '/careers':
         return <CareersPage />;
       case '/contact':
@@ -59,9 +62,8 @@ const App: React.FC = () => {
         return <TermsPage />;
       case '/blog':
         return <BlogPage />;
-      case '/':
       default:
-        return <HomePage />;
+        return <NotFoundPage />;
     }
   };
 
