@@ -130,8 +130,10 @@ const PrivacyPage: React.FC = () => {
             please contact us at:
           </p>
           <p>
-            <strong>Email:</strong> support@lahi.io <br />
-            <strong>Address:</strong> Lahi, Southwest Delhi, India
+            <strong>Email:</strong> contact@lahi.io <br />
+            <strong>Address:</strong> WSA202, B-128, First Floor, Sector-2
+Noida, Uttar Pradesh 201301
+
           </p>
         </div>
       </div>
