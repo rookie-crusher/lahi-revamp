@@ -7,10 +7,7 @@ import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
-import BlogPage from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { blogPosts } from './data/blogPosts';
 
 const App: React.FC = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -43,12 +40,6 @@ const App: React.FC = () => {
   }, []);
 
   const renderPage = () => {
-    if (path.startsWith('/blog/')) {
-      const postId = path.split('/blog/')[1];
-      const post = blogPosts.find(p => p.id === postId);
-      return <BlogPostPage post={post} />;
-    }
-
     switch (path) {
       case '/':
         return <HomePage />;
@@ -60,8 +51,6 @@ const App: React.FC = () => {
         return <PrivacyPage />;
       case '/terms':
         return <TermsPage />;
-      case '/blog':
-        return <BlogPage />;
       default:
         return <NotFoundPage />;
     }
