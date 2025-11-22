@@ -1,8 +1,17 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const PrivacyPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <Helmet>
+        <title>Privacy Policy – Lahi</title>
+        <meta name='description' content='Read our Privacy Policy to understand how Lahi collects, uses, and protects your personal data.' />
+        <link rel='canonical' href='https://lahi.io/privacy' />
+        <meta property='og:title' content='Privacy Policy – Lahi' />
+        <meta property='og:description' content='Read our Privacy Policy to understand how Lahi collects, uses, and protects your personal data.' />
+        <meta property='og:url' content='https://lahi.io/privacy' />
+      </Helmet>
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
         <div className="prose lg:prose-xl text-gray-700 space-y-4">

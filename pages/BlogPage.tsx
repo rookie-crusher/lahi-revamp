@@ -1,9 +1,18 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { blogPosts } from '../data/blogPosts';
 
 const BlogPage: React.FC = () => {
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>Blog – Insights & Stories from Lahi</title>
+        <meta name='description' content='Read the latest insights, tutorials, and stories from Lahi about digital innovation, app development, and game design.' />
+        <link rel='canonical' href='https://lahi.io/blog' />
+        <meta property='og:title' content='Blog – Insights & Stories from Lahi' />
+        <meta property='og:description' content='Read the latest insights, tutorials, and stories from Lahi.' />
+        <meta property='og:url' content='https://lahi.io/blog' />
+      </Helmet>
       <section className="text-center py-20 sm:py-28 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">

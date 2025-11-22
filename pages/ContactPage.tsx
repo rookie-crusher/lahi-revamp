@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { SendIcon } from '../components/icons/SendIcon';
 import { UserIcon } from '../components/icons/UserIcon';
 import { EmailIcon } from '../components/icons/EmailIcon';
@@ -65,6 +66,14 @@ const ContactPage: React.FC = () => {
 
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>Contact Us – Lahi</title>
+        <meta name='description' content='Get in touch with Lahi for your next digital project. We are ready to bring your ideas to life.' />
+        <link rel='canonical' href='https://lahi.io/contact' />
+        <meta property='og:title' content='Contact Us – Lahi' />
+        <meta property='og:description' content='Get in touch with Lahi for your next digital project.' />
+        <meta property='og:url' content='https://lahi.io/contact' />
+      </Helmet>
       <section className="text-center py-20 sm:py-28 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">

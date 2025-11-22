@@ -1,8 +1,17 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const TermsPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <Helmet>
+        <title>Terms of Use – Lahi</title>
+        <meta name='description' content='Read our Terms of Use to understand the rules and regulations for using Lahi services.' />
+        <link rel='canonical' href='https://lahi.io/terms' />
+        <meta property='og:title' content='Terms of Use – Lahi' />
+        <meta property='og:description' content='Read our Terms of Use to understand the rules and regulations for using Lahi services.' />
+        <meta property='og:url' content='https://lahi.io/terms' />
+      </Helmet>
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms of Use</h1>
         <div className="prose lg:prose-xl text-gray-700 space-y-4">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { SendIcon } from '../components/icons/SendIcon';
 
 type SubmissionStatus = 'success' | 'error' | null;
@@ -83,6 +84,14 @@ const CareersPage: React.FC = () => {
 
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>Careers – Join the Lahi Team</title>
+        <meta name='description' content='Join Lahi and help us build the future of digital experiences. Check out our open positions.' />
+        <link rel='canonical' href='https://lahi.io/careers' />
+        <meta property='og:title' content='Careers – Join the Lahi Team' />
+        <meta property='og:description' content='Join Lahi and help us build the future of digital experiences.' />
+        <meta property='og:url' content='https://lahi.io/careers' />
+      </Helmet>
       {/* Hero Section */}
       <section className="text-center py-20 sm:py-28 bg-gray-50 border-b border-gray-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
