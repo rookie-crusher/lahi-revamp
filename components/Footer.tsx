@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="lg:col-span-2">
             <a href="/" className="flex items-center gap-3 mb-4">
-              <img src="/logo.png" alt="Lahi Logo" className="h-16 w-auto" />
+              <img src="/logo.png" alt="Lahi Logo" className="h-28 w-auto" />
             </a>
             <p className="text-gray-600 max-w-md mb-6">
               Creating exceptional digital experiences through innovative apps, games, and media. We transform ideas into engaging digital realities.
