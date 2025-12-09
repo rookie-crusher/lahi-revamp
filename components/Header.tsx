@@ -20,7 +20,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <a href="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="Lahi Logo" className="h-28 w-auto" />
+            <img src="/logo.png" alt="Lahi Logo" className="h-36 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map(link => (
