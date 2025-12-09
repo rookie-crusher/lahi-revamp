@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { LahiLogo } from './icons/LahiLogo';
 import { ArrowRightIcon } from './icons/ArrowRightIcon';
 import { MenuIcon } from './icons/MenuIcon';
 import { CloseIcon } from './icons/CloseIcon';
@@ -21,8 +20,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <a href="/" className="flex items-center gap-3">
-            <LahiLogo className="h-8 w-auto" />
-            <span className="text-xl font-bold tracking-tighter text-gray-900">LAHI</span>
+            <img src="/logo.png" alt="Lahi Logo" className="h-8 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map(link => (

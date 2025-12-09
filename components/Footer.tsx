@@ -1,5 +1,4 @@
 import React from 'react';
-import { LahiLogo } from './icons/LahiLogo';
 import { TwitterIcon } from './icons/TwitterIcon';
 import { LinkedinIcon } from './icons/LinkedinIcon';
 import { EmailIcon } from './icons/EmailIcon';
@@ -25,9 +24,8 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-4">
-              <LahiLogo className="h-8 w-auto" />
-              <span className="text-xl font-bold tracking-tighter text-gray-900">LAHI</span>
+            <a href="/" className="flex items-center gap-3 mb-4">
+              <img src="/logo.png" alt="Lahi Logo" className="h-8 w-auto" />
             </a>
             <p className="text-gray-600 max-w-md mb-6">
               Creating exceptional digital experiences through innovative apps, games, and media. We transform ideas into engaging digital realities.
